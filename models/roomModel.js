@@ -22,7 +22,7 @@ const RoomSchema = new mongoose.Schema({
         required : true,
     },
     roomImage :{
-        type : String,
+        type : Buffer,
         required : true
     },
     isBusy : {

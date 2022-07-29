@@ -3,6 +3,7 @@ const { json } = require("express")
 const Room = require("../models/roomModel")
 const upload = require("../middlewear/upload")
 const path = require('path')
+const fs = require("fs")
 
 router.post('/create_room', upload.single('roomImage'), async(req, res)=>{
     const room = new Room({
@@ -12,10 +13,10 @@ router.post('/create_room', upload.single('roomImage'), async(req, res)=>{
         roomPrice : req.body.roomPrice,
         roomAccessCode : req.body.roomAccessCode,
         roomContact : req.body.roomContact,
-        roomImage : req.file.path
+        roomImage : fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename))
     })
     if(req.roomImage) {
-        roomImage = req.file.path
+        roomImage = fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename))
     }
     try{
        
