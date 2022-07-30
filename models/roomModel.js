@@ -21,9 +21,11 @@ const RoomSchema = new mongoose.Schema({
         type: String,
         required : true,
     },
-    roomImage :{
-        type : Buffer,
-        required : true
+    cloudinary_Id : {
+        type : String,
+    },
+    cloudinary_url : {
+        type:String,
     },
     isBusy : {
         type: Boolean,

@@ -1,27 +1,27 @@
 const router = require("express").Router()
-const { json } = require("express")
 const Room = require("../models/roomModel")
 const upload = require("../middlewear/upload")
-const path = require('path')
-const fs = require("fs")
+const cloudinary = require("../middlewear/cloudinary")
 
 router.post('/create_room', upload.single('roomImage'), async(req, res)=>{
-    const room = new Room({
+    try{
+        const result = await cloudinary.uploader.upload(req.file.path)
+        const room = new Room({
         roomName : req.body.roomName,
         roomDescription : req.body.roomDescription,
         isBusy : req.body.isBusy,
         roomPrice : req.body.roomPrice,
         roomAccessCode : req.body.roomAccessCode,
         roomContact : req.body.roomContact,
-        roomImage : fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename))
-    })
-    if(req.roomImage) {
-        roomImage = fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename))
-    }
-    try{
-       
+        cloudinary_id : result.public_id,
+        cloudinary_url : result.secure_url
+            })
+
         const save = await room.save()
-        res.json(save)
+        res.json({
+            hasErrors : false,
+            payload: save
+        })
     }catch(err){
         res.send(err)
     }
