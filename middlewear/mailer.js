@@ -9,8 +9,8 @@ async function sendMail(user, callback) {
         host: "smtp.gmail.com",
         port : 587,
         auth: {
-        user: "eosemegbe@gmail.com",
-        pass: "tgnlcemksrltdena"
+        user: proccess.env.USER,
+        pass: proccess.env.PASS
   }
     })
 
