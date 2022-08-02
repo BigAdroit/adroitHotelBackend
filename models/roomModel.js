@@ -21,7 +21,7 @@ const RoomSchema = new mongoose.Schema({
         type: String,
         required : true,
     },
-    cloudinary_Id : {
+    cloudinary_id : {
         type : String,
     },
     cloudinary_url : {

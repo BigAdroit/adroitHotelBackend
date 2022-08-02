@@ -81,6 +81,8 @@ router.get('/guestRoom/:roomId/:guestId', async(req, res)=> {
 router.put("/checkout/:id", async(req, res)=> {
     try{
         const checkout = await Guest.updateOne({_id : req.params.id}, {$set : {isPresent : req.body.isPresent}})
+        const Roomcheckout = await Room.updateOne({_id : checkout.room_id}, {$set : {isBusy : false}})
+
         res.status(200).json({
             hasError : false,
             message : "Successfully updated",

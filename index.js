@@ -12,6 +12,7 @@ const guestRoute = require("./routes/guests")
 const authRoute = require("./routes/auth")
 const dashboard = require('./routes/dashboard')
 const bookings = require('./routes/bookings')
+const avalabilityRouter = require("./routes/checkava")
 
 const url ='mongodb://localhost/hotel'
 mongoose.Promise = global.Promise
@@ -36,6 +37,7 @@ app.use('/auth', authRoute)
 app.use('/admin', dashboard)
 app.use('/bookings', bookings)
 app.use('/uploads', express.static('uploads'))
+app.use("/checkavalability",avalabilityRouter)
 
 app.get('/', (req, res)=>{
     res.json({

@@ -57,7 +57,7 @@ async function sendMail(user, callback) {
             <p> Room Booked : ${user.room_name} </p>
             <p> Clock in Date : ${user.clock_in_date} </p>
             <p> Clock out Date : ${user.clock_out_date} </p>
-            <p> Your bokking code is ${user.booking_code} </p>
+            <p> Your booking code is ${user.booking_code} </p>
             <br> <br> <br> 
             <p> Enjoy your day! </p>
         `
